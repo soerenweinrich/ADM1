@@ -1,8 +1,8 @@
-function [t,y,rate,inhibition] = ADM1_R1_mass_output(t,x,s,input,parameter) 
+function [t,y] = ADM1_R1_mass_output(t,x,system,parameter) 
 
 % -------------------------------------------------------------------------
 %
-% Simplified and mass-based
+% Simplified (mass-based)
 % Anaerobic Digestion Model No. 1 (ADM1)
 %
 % ADM1-R1
@@ -12,27 +12,27 @@ function [t,y,rate,inhibition] = ADM1_R1_mass_output(t,x,s,input,parameter)
 %
 % Matlab ODE function 
 %
-% Version 1.0
+% Version 1.1
 %
 % https://github.com/soerenweinrich/ADM1
 %
 % Copyright (c) 2021 Sören Weinrich
 % E-Mail: soeren.weinrich@dbfz.de
 %
-% Citation example:
+% Additional information (citation example):
 %
 % Weinrich, S.; Nelles, M. (2021).
 % Systematic simplification of the Anaerobic Digestion Model No. 1 (ADM1) -
-% Model development and stoichiometric analysis.
-% Submitted to Bioresource Technology.
+% Model development and stoichiometric analysis. Bioresource Technology. 
+% In press. https://doi.org/10.1016/j.biortech.2021.125124.
 %
 % -------------------------------------------------------------------------
 
 % System parameters  
  
-V_liq = s(1); 
-V_gas = s(2); 
-p_atm = s(4); 
+V_liq = system(1); 
+V_gas = system(2); 
+p_atm = system(3); 
  
 % Model parameters 
  
@@ -110,38 +110,3 @@ y(37) = p_ch4;
 y(38) = p_co2; 
 y(39) = p_gas; 
 y(40) = q_gas; 
- 
-% Define inhibtion functions 
- 
-inhibition(1) = x(10) / (x(10) + K_I_IN); 
-inhibition(2) = 10^(-(3/(pK_u_aa - pK_l_aa))*(pK_l_aa+pK_u_aa)/2) / (S_H^(3/(pK_u_aa - pK_l_aa)) + 10^(-(3/(pK_u_aa - pK_l_aa))*(pK_l_aa+pK_u_aa)/2)); 
-inhibition(3) = 10^(-(3/(pK_u_ac - pK_l_ac))*(pK_l_ac+pK_u_ac)/2) / (S_H^(3/(pK_u_ac - pK_l_ac)) + 10^(-(3/(pK_u_ac - pK_l_ac))*(pK_l_ac+pK_u_ac)/2)); 
-inhibition(4) = K_I_nh3 / (K_I_nh3 + x(29)); 
- 
-% Define rate equations 
- 
-rate(1) = k_ch * x(12); 
-rate(2) = k_pr * x(13); 
-rate(3) = k_li * x(14); 
-rate(4) = k_m_su * x(1) / (K_su + x(1))*x(15) * inhibition(1) * inhibition(2); 
-rate(5) = k_m_aa * x(2) / (K_aa + x(2))*x(16) * inhibition(1) * inhibition(2); 
-rate(6) = k_m_fa * x(3) / (K_fa + x(3))*x(17) * inhibition(1) * inhibition(2); 
-rate(7) = k_m_va * x(4) / (K_va + x(4))*x(18)*x(4)/(x(5) + x(4) + 1e-8) * inhibition(1) * inhibition(2); 
-rate(8) = k_m_bu * x(5) / (K_bu + x(5))*x(19)*x(5)/(x(4) + x(5) + 1e-8) * inhibition(1) * inhibition(2); 
-rate(9) = k_m_pro * x(6) / (K_pro + x(6))*x(20) * inhibition(1) * inhibition(2); 
-rate(10) = k_m_ac * x(7) / (K_ac + x(7))*x(21) * inhibition(1) * inhibition(3) * inhibition(4); 
-rate(11) = k_dec * x(15); 
-rate(12) = k_dec * x(16); 
-rate(13) = k_dec * x(17); 
-rate(14) = k_dec * x(18); 
-rate(15) = k_dec * x(19); 
-rate(16) = k_dec * x(20); 
-rate(17) = k_dec * x(21); 
-rate(18) = k_AB_va*(x(24)  * (K_a_va + S_H) - K_a_va*x(4)); 
-rate(19) = k_AB_bu*(x(25) * (K_a_bu + S_H) - K_a_bu * x(5)); 
-rate(20) = k_AB_pro*(x(26) * (K_a_pro + S_H) - K_a_pro * x(6)); 
-rate(21) = k_AB_ac*(x(27) * (K_a_ac + S_H) - K_a_ac * x(7)); 
-rate(22) = k_AB_co2*(x(28) * (K_a_co2 + S_H) - K_a_co2 * x(9)); 
-rate(23) = k_AB_IN*(x(29) * (K_a_IN + S_H) - K_a_IN * x(10)); 
-rate(24) = k_La*(x(8) -16*(K_H_ch4*p_ch4)); 
-rate(25) = k_La*(S_co2 - 44*(K_H_co2*p_co2)); 
