@@ -10,5 +10,7 @@ In regard to available measurements on anaerobic digestion plants simplified mod
 
 ## Literature
 Detailed description of development, application and evaluation of individual model structures is provided in the following publications: 
+
 Weinrich, S.; Nelles, M., (2021): Systematic model reduction of the Anaerobic Digestion Model No. 1 (ADM1) – Model development and stoichiometric analysis. Bioresource Technology. In press. https://doi.org/10.1016/j.biortech.2021.125124.
+
 Weinrich, S.; Mauky, E.; Schmidt, T.; Krebs, C.; Liebetrau, J.; Nelles, M., (2021): Systematic model reduction of the Anaerobic Digestion Model No. 1 (ADM1) – Laboratory experiments and model application. Bioresource Technology. In press. https://doi.org/10.1016/j.biortech.2021.125104.
