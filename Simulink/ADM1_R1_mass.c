@@ -1,4 +1,6 @@
-// Simplified and mass-based
+// ------------------------------------------------------------------------
+//
+// Simplified (mass-based)
 // Anaerobic Digestion Model No. 1 (ADM1)
 //
 // ADM1-R1
@@ -8,7 +10,7 @@
 //
 // Level 2 S-Function
 //
-// Version 1.0
+// Version 1.1
 //
 // https://github.com/soerenweinrich/ADM1
 //
@@ -18,12 +20,14 @@
 // Implementation based on the detailed C-Mex template
 // provided by The MathWorks, Inc.
 //
-// Citation example:
+// Additional information (citation example):
 //
 // Weinrich, S.; Nelles, M. (2021).
 // Systematic simplification of the Anaerobic Digestion Model No. 1 (ADM1) -
-// Model development and stoichiometric analysis.
-// Submitted to Bioresource Technology.
+// Model development and stoichiometric analysis. Bioresource Technology.
+// In press. https://doi.org/10.1016/j.biortech.2021.125124.
+//
+// ------------------------------------------------------------------------
 
 #define S_FUNCTION_NAME ADM1_R1_mass
 #define S_FUNCTION_LEVEL 2 
