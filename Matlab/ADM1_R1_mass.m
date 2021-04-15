@@ -2,7 +2,7 @@ function dx = ADM1_R1_mass(t,x,s,input,parameter)
 
 % -------------------------------------------------------------------------
 %
-% Simplified and mass-based
+% Simplified (mass-based)
 % Anaerobic Digestion Model No. 1 (ADM1)
 %
 % ADM1-R1
@@ -12,31 +12,31 @@ function dx = ADM1_R1_mass(t,x,s,input,parameter)
 %
 % Matlab ODE function 
 %
-% Version 1.0
+% Version 1.1
 %
 % https://github.com/soerenweinrich/ADM1
 %
 % Copyright (c) 2021 Sören Weinrich
 % E-Mail: soeren.weinrich@dbfz.de
 %
-% Citation example:
+% Additional information (citation example):
 %
 % Weinrich, S.; Nelles, M. (2021).
 % Systematic simplification of the Anaerobic Digestion Model No. 1 (ADM1) -
-% Model development and stoichiometric analysis.
-% Submitted to Bioresource Technology.
+% Model development and stoichiometric analysis. Bioresource Technology. 
+% In press. https://doi.org/10.1016/j.biortech.2021.125124.
 %
 % -------------------------------------------------------------------------
 
 % Interpolate input parameters 
  
-[x_in,T_op,q_in]= input_function(input,t); 
+[x_in,q_in]= ADM1_interp_input(input,t); 
  
 % System parameters  
  
 V_liq = s(1); 
 V_gas = s(2); 
-p_atm = s(4); 
+p_atm = s(3); 
  
 % Model parameters 
  

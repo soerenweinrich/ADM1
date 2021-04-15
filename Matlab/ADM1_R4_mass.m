@@ -2,7 +2,7 @@ function dx = ADM1_R4_mass(t,x,s,input,parameter)
 
 % -------------------------------------------------------------------------
 %
-% Simplified and mass-based
+% Simplified (mass-based)
 % Anaerobic Digestion Model No. 1 (ADM1)
 %
 % ADM1-R4
@@ -12,31 +12,31 @@ function dx = ADM1_R4_mass(t,x,s,input,parameter)
 %
 % Matlab ODE function 
 %
-% Version 1.0
+% Version 1.1
 %
 % https://github.com/soerenweinrich/ADM1
 %
 % Copyright (c) 2021 Sören Weinrich
 % E-Mail: soeren.weinrich@dbfz.de
 %
-% Citation example:
+% Additional information (citation example):
 %
 % Weinrich, S.; Nelles, M. (2021).
 % Systematic simplification of the Anaerobic Digestion Model No. 1 (ADM1) -
-% Model development and stoichiometric analysis.
-% Submitted to Bioresource Technology.
+% Model development and stoichiometric analysis. Bioresource Technology. 
+% In press. https://doi.org/10.1016/j.biortech.2021.125124.
 %
 % -------------------------------------------------------------------------
 
 % Interpolate input parameters 
  
-[x_in,T_op,q_in]= input_function(input,t); 
+[x_in,q_in]= ADM1_interp_input(input,t); 
  
 % System parameters  
  
 V_liq = s(1); 
 V_gas = s(2); 
-p_atm = s(4); 
+p_atm = s(3); 
  
 % Model parameters 
  
@@ -91,7 +91,7 @@ dx(1,1) = q_in*(x_in(1) - x(1))/V_liq + process(1);
 dx(2,1) = q_in*(x_in(2) - x(2))/V_liq + process(2); 
 dx(3,1) = q_in*(x_in(3) - x(3))/V_liq + process(3); 
 dx(4,1) = q_in*(x_in(4) - x(4))/V_liq + process(4); 
-dx(5,1) = q_in*(x_in(5) -x(5))/V_liq + process(5); 
+dx(5,1) = q_in*(x_in(5) - x(5))/V_liq + process(5); 
 dx(6,1) = q_in*(x_in(6) - x(6))/V_liq + process(6); 
 dx(7,1) = q_in*(x_in(7) - x(7))/V_liq + process(7); 
 dx(8,1) = q_in*(x_in(8) - x(8))/V_liq + process(8); 
